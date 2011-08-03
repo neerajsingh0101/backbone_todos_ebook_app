@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="master.css" type="text/css" />
+    <title>step 4 : capture event when enter is hit</title>
+  </head>
+
+  <body>
+    <div class="nav" id="navheader">
+    <table width="100%">
+      <tr><td width="33%" align="left">
+        
+         <a href="step_3_show_tooltip.html">Prev</a><br/>
+         step 3 : show tooltip
+        
+      </td><td width="33%" align="center">
+        
+         <a href="index.html">Home</a><br/>
+         <strong>backbone todos app in steps</strong>
+        
+      </td><td width="33%" align="right">
+        
+          <a href="step_5_save_record_when_enter_is_hit.html">Next</a><br/>
+          step 5 : save record when enter is hit
+        
+      </td></tr>
+    </table>
+    </div>
+
+    <hr/>
+
+    <div class="content">
+      <div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a id="_step_4_capture_event_when_enter_is_hit"></a>step 4 : capture event when enter is hit</h2></div></div></div>
+<p>After typing the todo task user is expected to hit enter to save the task. In this step we wil try to just capture the event.</p>
+<div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a id="_code_diff_3"></a>Code diff</h3></div></div></div>
+<p><a class="ulink" href="http://bit.ly/ox4DlN" target="_top">http://bit.ly/ox4DlN</a></p>
+</div>
+<div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a id="_explanation_2"></a>Explanation</h3></div></div></div>
+<p>In this commit, function <code class="literal">createOnEnter</code> is invoked everytime a key is pressed. However we are only interested when <code class="literal">enter</code> key is pressed.</p>
+<pre class="programlisting">createOnEnter: function(e) {
+  if (e.keyCode != 13) return;
+  console.log("add functionality to save the todo item");
+  this.input.val('');
+}</pre>
+</div>
+</div>
+
+    </div>
+
+    <hr/>
+
+    <div class="nav" id="navfooter">
+    <table width="100%">
+      <tr><td width="33%" align="left">
+        
+         <a href="step_3_show_tooltip.html">Prev</a><br/>
+         step 3 : show tooltip
+        
+      </td><td width="33%" align="center">
+        
+         <a href="index.html">Home</a><br/>
+         backbone todos app in steps
+        
+      </td><td width="33%" align="right">
+        
+          <a href="step_5_save_record_when_enter_is_hit.html">Next</a><br/>
+          step 5 : save record when enter is hit
+        
+      </td></tr>
+    </table>
+    </div>
+  </body>
+</html>

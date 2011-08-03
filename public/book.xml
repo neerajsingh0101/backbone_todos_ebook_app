@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
+
+<article lang="en">
+<articleinfo>
+    <title>backbone todos app in steps</title>
+    <author>
+        <firstname>Neeraj</firstname>
+        <surname>Singh</surname>
+        <email>neeraj@BigBinary.com</email>
+    </author>
+    <authorinitials>NS</authorinitials>
+</articleinfo>
+<section id="_introduction">
+<title>Introduction</title>
+<simpara><ulink url="http://documentcloud.github.com/backbone/">backbone.js</ulink> brings MVC style of development to JavaScript. The <ulink url="https://github.com/documentcloud/backbone/">source code</ulink> of <emphasis>backbone.js</emphasis> has <literal>todos</literal> application which can be seen in action <ulink url="http://documentcloud.github.com/backbone/examples/todos/index.html">here</ulink> .</simpara>
+<simpara>The <ulink url="http://documentcloud.github.com/backbone/docs/todos.html">source code of todos</ulink> is ,although,  simple might seem intimidating to some. This ebook is my attempt to build the application in 18 incremental steps. First step will have not have any JavaScript code and slowly JavaScript code will be added.</simpara>
+<simpara>backbone.js is undergoing a lot of change very rapidly. As of this writing backbone.js 0.5.2 was the most stable release and that&#8217;s what is used in this application.</simpara>
+</section>
+<section id="_step_1_getting_started">
+<title>step 1 : Getting started</title>
+<simpara>We will start with barebone html markup. No JavaScritp is being used. The html code is given below.</simpara>
+<programlisting language="html" linenumbering="unnumbered">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Backbone Demo: Todos in steps&lt;/title&gt;
+    &lt;link href="todos.css" media="all" rel="stylesheet" type="text/css"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="todoapp"&gt;
+      &lt;div class="title"&gt;
+        &lt;h1&gt;Todos in steps&lt;/h1&gt;
+      &lt;/div&gt;
+      &lt;div class="content"&gt;
+        &lt;div id="create-todo"&gt;
+          &lt;input id="new-todo" placeholder="What needs to be done?" type="text" /&gt;
+          &lt;span class="ui-tooltip-top" style="display:none;"&gt;
+             Press Enter to save this task
+          &lt;/span&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</programlisting>
+<simpara>Above html code with css will produce following page</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="image/step1.png"/>
+  </imageobject>
+  <textobject><phrase>step1</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+<section id="_step_2_add_necessary_javascript_files">
+<title>step 2 : Add necessary JavaScript files</title>
+<simpara>In this step necessary JavaScript files are added to the project.</simpara>
+<section id="_code_diff">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/oUSDpw">http://bit.ly/oUSDpw</ulink></simpara>
+</section>
+<section id="_create_javascripts_directory_and_download_javascripts_file">
+<title>Create javascripts directory and download javascripts file</title>
+<simpara>In the root directory of the project create a <literal>javascripts</literal> directory and download following files to that directory.</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+<ulink url="https://github.com/neerajdotname/backbone-todos-in-steps/blob/step2/javascripts/json2.js">json2.js</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="https://github.com/neerajdotname/backbone-todos-in-steps/blob/step2/javascripts/jquery-1.5.js">jquery-1.5.js</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="https://github.com/neerajdotname/backbone-todos-in-steps/blob/step2/javascripts/underscore-1.1.6.js">underscore-1.1.6.js</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="https://github.com/neerajdotname/backbone-todos-in-steps/blob/step2/javascripts/backbone.js">backbone.js</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_create_empty_todos_js">
+<title>Create empty todos.js</title>
+<simpara>Create an empty todos.js file in the root directory of the project.</simpara>
+</section>
+<section id="_include_javascripts_in_the_index_html_file">
+<title>Include javascripts in the index.html file</title>
+<programlisting language="html" linenumbering="unnumbered">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    ....
+    &lt;script src="./javascripts/json2.js"&gt;&lt;/script&gt;
+    &lt;script src="./javascripts/jquery-1.5.js"&gt;&lt;/script&gt;
+    &lt;script src="./javascripts/underscore-1.1.6.js"&gt;&lt;/script&gt;
+    &lt;script src="./javascripts/backbone.js"&gt;&lt;/script&gt;
+    &lt;script src="todos.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+&lt;/html&gt;</programlisting>
+</section>
+</section>
+<section id="_step_3_show_tooltip">
+<title>step 3 : show tooltip</title>
+<simpara>If a user start typing in the input box and after entering something if the user waits for more than one second then a tooltip should be shown.</simpara>
+<section id="_code_diff_2">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/qzI6pE">http://bit.ly/qzI6pE</ulink></simpara>
+</section>
+<section id="_minimal_backbone_application">
+<title>minimal backbone application</title>
+<simpara>Here is a minimal Backbone.js application. This application does not do anything meaningful yet.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">$(function(){
+  window.AppView = Backbone.View.extend({});
+  window.app = new AppView;
+});</programlisting>
+</section>
+<section id="_explanation">
+<title>Explanation</title>
+<simpara>There is a lot going on in this step. First lets look at <literal>events</literal> stuff.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">events: {
+  "keyup #new-todo": "showTooltip"
+}</programlisting>
+<simpara>Above code could be read as when keyup event occurs at <literal>#new-todo</literal> then invoke function <literal>showTooltip</literal>. When <literal>todos.js</literal> is loaded then backbone will look at events code and will do the necessary work to do proper event bindings. However backbone needs a context to which the events will be bound. And to get that context backbone looks for key <literal>el</literal>. Hence you will notice following code.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">el: $("#todoapp")</programlisting>
+<simpara>In the jQuery world we are used to doing DOM manipulation without preceding the call with <literal>this</literal>. However in backbone you will see a lot of code like this</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">initialize: function(){
+  this.input = this.$("#new-todo");
+}</programlisting>
+<simpara>Get used to writing <literal>this.$()</literal> instead of just <literal>$()</literal> . That is because of the way backbone is architected.</simpara>
+<simpara>Last but not the least you will notice method <literal>initialize</literal> . As the name suggests before any method is invoked initialize is invoked. Any prepatory code should be put here.</simpara>
+</section>
+<section id="_snapshot">
+<title>snapshot</title>
+<simpara>If you enter something in the todo input box and wait for 1 second then you will see toolship as shown in the picture below.</simpara>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="image/step3.png"/>
+  </imageobject>
+  <textobject><phrase>step3</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+</section>
+<section id="_step_4_capture_event_when_enter_is_hit">
+<title>step 4 : capture event when enter is hit</title>
+<simpara>After typing the todo task user is expected to hit enter to save the task. In this step we wil try to just capture the event.</simpara>
+<section id="_code_diff_3">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/ox4DlN">http://bit.ly/ox4DlN</ulink></simpara>
+</section>
+<section id="_explanation_2">
+<title>Explanation</title>
+<simpara>In this commit, function <literal>createOnEnter</literal> is invoked everytime a key is pressed. However we are only interested when <literal>enter</literal> key is pressed.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">createOnEnter: function(e) {
+  if (e.keyCode != 13) return;
+  console.log("add functionality to save the todo item");
+  this.input.val('');
+}</programlisting>
+</section>
+</section>
+<section id="_step_5_save_record_when_enter_is_hit">
+<title>step 5 : save record when enter is hit</title>
+<simpara>When user hits enter then save the record.</simpara>
+<section id="_code_diff_4">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/pWYx9c">http://bit.ly/pWYx9c</ulink></simpara>
+</section>
+<section id="_explanation_3">
+<title>Explanation</title>
+<simpara>When a user hits enter after entering a todo item then that todo item needs to be stored. Here that todo item is acting like a model. So this is a good item to create that model and then we will be able to save that model easily. A collection is nothing else but a collection of models.</simpara>
+</section>
+<section id="_model_code">
+<title>model code</title>
+<simpara>Below code is creating a model named <emphasis>Todo</emphasis> .</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">window.Todo = Backbone.Model.extend({
+  defaults: {
+    content: "empty todo ..."
+  },
+  initialize: function(){
+    if (!this.get('content')){
+      this.set({"content": this.defaults.content});
+    }
+  }
+});</programlisting>
+</section>
+<section id="_collection_code">
+<title>collection code</title>
+<simpara>Here is collection code.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">window.TodoList = Backbone.Collection.extend({
+  model: Todo
+});
+window.Todos = new TodoList;</programlisting>
+<simpara>After this code <literal>Todos</literal> will refer to the collection. A backbone collection has certain properties. One of them is method called <ulink url="http://documentcloud.github.com/backbone/#Collection-create">create</ulink> . In order for <literal>create</literal> to work collection needs to know which model to work with. Hence the attribute <emphasis>model</emphasis> . If creation of the model is successful then that newly created model will be added to the collection.</simpara>
+<simpara>If you run the code at this point of time you will get following error</simpara>
+</section>
+<section id="_error">
+<title>Error</title>
+<programlisting language="javascript" linenumbering="unnumbered">Uncaught Error: A "url" property of function must be specified</programlisting>
+<simpara>We are getting that error because when model is saved then backbone invokes <ulink url="http://documentcloud.github.com/backbone/#Sync">Backbone.Sync</ulink> which attempts to save the record on the server. Since we have not specified how the model should be saved we are getting the error.</simpara>
+</section>
+</section>
+<section id="_step_6_add_backbone_localstorage">
+<title>step 6 : add backbone-localstorage</title>
+<simpara>In this step backbone-localstorage has been added. backbone-localstorage is  a simple module to replace <literal>Backbone.sync</literal> with localStorage-based persistence. Models are given GUIDS, and saved into a JSON object.</simpara>
+<section id="_code_diff_5">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/oeJgfW">http://bit.ly/oeJgfW</ulink></simpara>
+</section>
+<section id="_explanation_4">
+<title>Explanation</title>
+<simpara>When Todos.create is invoked then todo item is stored in localstorage.</simpara>
+<simpara>After entering a todo item when you hit enter then todo item is stored but you don&#8217;t see the newly added item. That is because we need to build the view to display the stored data. That&#8217;s what we are going to do in upcoming steps.</simpara>
+</section>
+</section>
+<section id="_step_7_setup_to_display_view_when_a_todo_is_added">
+<title>step 7 : setup to display view when a todo is added</title>
+<section id="_code_diff_6">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/n70l57">http://bit.ly/n70l57</ulink></simpara>
+</section>
+<section id="_explanation_5">
+<title>Explanation</title>
+<simpara>When a new todo item is created and added to the collection then collection fires an event called <literal>add</literal>. In this commit a callback function named <literal>addOne</literal> is being added. When a new item is added to the collection then this callback is fired.</simpara>
+<simpara>In the following code the third argument is specifying what should be the value of <literal>this</literal> inside the function <literal>addOne</literal> .</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">Todos.bind('add', this.addOne, this);</programlisting>
+</section>
+</section>
+<section id="_step_8_add_markup_and_template_for_displaying_todo_items">
+<title>step 8 : add markup and template for displaying todo items</title>
+<section id="_code_diff_7">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/qsrYxd">http://bit.ly/qsrYxd</ulink></simpara>
+</section>
+<section id="_explanation_6">
+<title>Explanation</title>
+<simpara>In this commit necessary markup to display todos list was added.</simpara>
+</section>
+</section>
+<section id="_step_9_display_the_newly_added_todo_item">
+<title>step 9 : display the newly added todo item</title>
+<section id="_code_diff_8">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/rfZqrd">http://bit.ly/rfZqrd</ulink></simpara>
+</section>
+<section id="_explanation_7">
+<title>Explanation</title>
+<simpara>In this commit TodoView is created. This view is responsible for rendering the view from the template. Function <literal>addOne</literal> uses the view to append the view to the list.</simpara>
+<simpara>After adding a few todo items if you refresh the page then the todo items are not displayed. In the next step we will fix that.</simpara>
+</section>
+</section>
+<section id="_step_10_display_the_list_of_todo_items_upon_loading">
+<title>step 10 : display the list of todo items upon loading</title>
+<section id="_code_diff_9">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/qxu0TQ">http://bit.ly/qxu0TQ</ulink></simpara>
+</section>
+<section id="_explanation_8">
+<title>Explanation</title>
+<simpara>When collection invokes <literal>fetch</literal> then usually data from server is received. However in this case data from backbone-localstorage will be fetched. Once the data arrives then <literal>reset</literal> callback is invoked. This commit makes use of <literal>reset</literal> callback to display data.</simpara>
+</section>
+</section>
+<section id="_step_11_display_the_list_of_todo_items_upon_loading">
+<title>step 11 : display the list of todo items upon loading</title>
+<section id="_code_diff_10">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/qjTZiH">http://bit.ly/qjTZiH</ulink></simpara>
+</section>
+<section id="_explanation_9">
+<title>Explanation</title>
+<simpara>This commit added the image for displaying the delete link. Also a checkbox was added.</simpara>
+<simpara>Using <literal>tagName</literal> makes the whole view lie inside <literal>li</literal>.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">tagName: 'li'</programlisting>
+</section>
+</section>
+<section id="_step_12_deleting_a_todo_item">
+<title>step 12 : deleting a todo item</title>
+<section id="_code_diff_11">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/qPJTmQ">http://bit.ly/qPJTmQ</ulink></simpara>
+</section>
+<section id="_explanation_10">
+<title>Explanation</title>
+<simpara>When a user clicks delete image to delete a todo item then function <literal>clear</literal> is invoked. This function destroys the model. When a model is destroyed then model invokes a callbacks bound to name <literal>destroy</literal>. In the initialize method an event binding is done such that when a model is destroyed then <literal>remove</literal> method is invoked.</simpara>
+<simpara>In the <literal>remove</literal> method <literal>this.el</literal> is used to delete the view fragment. Note that in view <literal>this.el</literal> refers to the view fragement.</simpara>
+</section>
+</section>
+<section id="_step_13_editing_a_todo_item_by_double_clicking">
+<title>step 13 : editing a todo item by double clicking</title>
+<section id="_code_diff_12">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/pqpDQT">http://bit.ly/pqpDQT</ulink></simpara>
+</section>
+<section id="_explanation_11">
+<title>Explanation</title>
+<simpara>This commit adds the feature of editing and updating a todo item by double clicking an existing todo item.</simpara>
+<simpara>Let&#8217;s look at following code.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">this.input.bind('blur', _.bind(this.close, this));</programlisting>
+<simpara>In the above code while binding we had to use <literal>_bind</literal> method provided by underscore to maintain the value of this. In this case following code would not work because providing <literal>this</literal> as the third argument only works while binding to backbone events.</simpara>
+<programlisting language="javascript" linenumbering="unnumbered">this.input.bind('blur', this.close, this);</programlisting>
+</section>
+</section>
+<section id="_step_14_update_a_todo_item_by_hitting_enter">
+<title>step 14 : update a todo item by hitting enter</title>
+<section id="_code_diff_13">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/qw8Xfq">http://bit.ly/qw8Xfq</ulink></simpara>
+</section>
+<section id="_explanation_12">
+<title>Explanation</title>
+<simpara>When a user hits enter then invoke method <literal>close</literal> which updates the record.</simpara>
+</section>
+</section>
+<section id="_step_15_display_the_count_of_remaining_items">
+<title>step 15 : display the count of remaining items</title>
+<section id="_code_diff_14">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/reBc5A">http://bit.ly/reBc5A</ulink></simpara>
+</section>
+<section id="_explanation_13">
+<title>Explanation</title>
+<simpara>Display the total number of remaining tasks. In this commit a new template for displaying stats was added.</simpara>
+</section>
+</section>
+<section id="_step_16_do_not_display_stats_if_todo_item">
+<title>step 16 : do not display stats if todo item</title>
+<section id="_code_diff_15">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/r61QEU">http://bit.ly/r61QEU</ulink></simpara>
+</section>
+<section id="_explanation_14">
+<title>Explanation</title>
+<simpara>Do not display the count of pending items if there is no pending todo item.</simpara>
+</section>
+</section>
+<section id="_step_17_introduce_emphasis_done_emphasis_attribute">
+<title>step 17 : introduce <emphasis>done</emphasis> attribute</title>
+<section id="_code_diff_16">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/rpp6sQ">http://bit.ly/rpp6sQ</ulink></simpara>
+</section>
+<section id="_explanation_15">
+<title>Explanation</title>
+<simpara>Introduce <emphasis>done</emphasis> attribute in model. When a todo item is checked then mark that item as done.</simpara>
+</section>
+</section>
+<section id="_step_18_implement_emphasis_clear_completed_items_emphasis">
+<title>step 18 : Implement <emphasis>clear completed items</emphasis></title>
+<section id="_code_diff_17">
+<title>Code diff</title>
+<simpara><ulink url="http://bit.ly/q4l6td">http://bit.ly/q4l6td</ulink></simpara>
+</section>
+<section id="_explanation_16">
+<title>Explanation</title>
+<simpara>When a user clicks <literal>clear completed items</literal> then go through each of the completed todo items and mark each one of them as done.</simpara>
+</section>
+</section>
+</article>

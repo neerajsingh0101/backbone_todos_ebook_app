@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="master.css" type="text/css" />
+    <title>step 5 : capture event when enter is hit</title>
+  </head>
+
+  <body>
+    <div class="nav" id="navheader">
+    <table width="100%">
+      <tr><td width="33%" align="left">
+        
+         <a href="step_4_capture_event_when_enter_is_hit.html">Prev</a><br/>
+         step 4 : capture event when enter is hit
+        
+      </td><td width="33%" align="center">
+        
+         <a href="index.html">Home</a><br/>
+         <strong>backbone todos app in steps</strong>
+        
+      </td><td width="33%" align="right">
+        
+          <a href="step_6_add_backbone-localstorage.html">Next</a><br/>
+          step 6 : add backbone-localstorage
+        
+      </td></tr>
+    </table>
+    </div>
+
+    <hr/>
+
+    <div class="content">
+      <div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a id="_step_5_capture_event_when_enter_is_hit"></a>step 5 : capture event when enter is hit</h2></div></div></div>
+<p>After typing the todo task the user is expected to hit enter to save the task. In this step we wil try to just capture the event.</p>
+<div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a id="_code_diff_4"></a>Code diff</h3></div></div></div>
+<p><a class="ulink" href="http://bit.ly/pWYx9c" target="_top">http://bit.ly/pWYx9c</a></p>
+</div>
+<div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a id="_explanation_3"></a>Explanation</h3></div></div></div>
+<p>When a user hits enter after entering a todo item then that todo item needs to be stored. Here that todo item is acting like a model. So this is a good item to create that model and then we will be able to save that model easily. A collection is nothing else but a collection of models.</p>
+</div>
+<div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a id="_model_code"></a>model code</h3></div></div></div>
+<p>Below code is creating a model named <span class="emphasis"><em>Todo</em></span> . Backbone automatically invokes method <span class="emphasis"><em>initialize</em></span> where if the model does not have any content then a default content is being set.</p>
+<pre class="programlisting">window.Todo = Backbone.Model.extend({
+  defaults: {
+    content: "empty todo ..."
+  },
+  initialize: function(){
+    if (!this.get('content')){
+      this.set({"content": this.defaults.content});
+    }
+  }
+});</pre>
+</div>
+<div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a id="_collection_code"></a>collection code</h3></div></div></div>
+<p>Here is collection code.</p>
+<pre class="programlisting">window.TodoList = Backbone.Collection.extend({
+  model: Todo
+});
+window.Todos = new TodoList;</pre>
+<p>After this code <span class="emphasis"><em>Todos</em></span> will refer to the collection. A backbone collection has certain properties. One of them is method called <a class="ulink" href="http://documentcloud.github.com/backbone/#Collection-create" target="_top">create</a> . In order for <span class="emphasis"><em>crate</em></span> to work collection needs to know which model to work with. Hence the attribute <span class="emphasis"><em>model</em></span> . If creation of the model is successful then that newly created model will be added to the collection.</p>
+<p>If you run the code at this point of time you will get following error</p>
+</div>
+<div class="section" lang="en" xml:lang="en">
+<div class="titlepage"><div><div><h3 class="title">
+<a id="_error"></a>Error</h3></div></div></div>
+<pre class="programlisting">Uncaught Error: A "url" property of function must be specified</pre>
+<p>We are getting that error because when model is saved then backbone invokes <a class="ulink" href="http://documentcloud.github.com/backbone/#Sync" target="_top">Backbone.Sync</a> which attempts to save the record on the server. Since we have not specified how the model should be saved we are getting the error. We will fix this error in the next step.</p>
+</div>
+</div>
+
+    </div>
+
+    <hr/>
+
+    <div class="nav" id="navfooter">
+    <table width="100%">
+      <tr><td width="33%" align="left">
+        
+         <a href="step_4_capture_event_when_enter_is_hit.html">Prev</a><br/>
+         step 4 : capture event when enter is hit
+        
+      </td><td width="33%" align="center">
+        
+         <a href="index.html">Home</a><br/>
+         backbone todos app in steps
+        
+      </td><td width="33%" align="right">
+        
+          <a href="step_6_add_backbone-localstorage.html">Next</a><br/>
+          step 6 : add backbone-localstorage
+        
+      </td></tr>
+    </table>
+    </div>
+  </body>
+</html>
