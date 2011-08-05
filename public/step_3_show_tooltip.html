@@ -56,7 +56,7 @@
 <pre class="programlisting">events: {
   "keyup #new-todo": "showTooltip"
 }</pre>
-<p>Above code could be read as when keyup event occurs at <code class="literal">#new-todo</code> then invoke function <code class="literal">showTooltip</code>. When <code class="literal">todos.js</code> is loaded then backbone will look at events code and will do the necessary work to do proper event bindings. However backbone needs a context to which the events will be bound. And to get that context backbone looks for key <code class="literal">el</code>. Hence you will notice following code.</p>
+<p>Above code could be read as when keyup event occurs at <code class="literal">#new-todo</code> then invoke function <code class="literal">showTooltip</code>. When <code class="literal">todos.js</code> is loaded then backbone will look at events code and will do the necessary work to do proper event bindings. However backbone needs a context to which the events will be bound. And to get that context backbone looks for key <code class="literal">el</code>. <code class="literal">el</code> stands for <code class="literal">element</code>. Note that it is second letter is <code class="literal">l</code> for 'letter` and it is not numeric <code class="literal">1</code>.</p>
 <pre class="programlisting">el: $("#todoapp")</pre>
 <p>In the jQuery world we are used to doing DOM manipulation without preceding the call with <code class="literal">this</code>. However in backbone you will see a lot of code like this</p>
 <pre class="programlisting">initialize: function(){
