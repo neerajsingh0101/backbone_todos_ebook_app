@@ -129,12 +129,6 @@
 }</programlisting>
 <simpara>Above code could be read as when keyup event occurs at <literal>#new-todo</literal> then invoke function <literal>showTooltip</literal>. When <literal>todos.js</literal> is loaded then backbone will look at events code and will do the necessary work to do proper event bindings. However backbone needs a context to which the events will be bound. And to get that context backbone looks for key <literal>el</literal>. <literal>el</literal> stands for <literal>element</literal>. Note that it is second letter is <literal>l</literal> for 'letter` and it is not numeric <literal>1</literal>.</simpara>
 <programlisting language="javascript" linenumbering="unnumbered">el: $("#todoapp")</programlisting>
-<simpara>In the jQuery world we are used to doing DOM manipulation without preceding the call with <literal>this</literal>. However in backbone you will see a lot of code like this</simpara>
-<programlisting language="javascript" linenumbering="unnumbered">initialize: function(){
-  this.input = this.$("#new-todo");
-}</programlisting>
-<simpara>Get used to writing <literal>this.$()</literal> instead of just <literal>$()</literal> . That is because of the way backbone is architected.</simpara>
-<simpara>Last but not the least you will notice method <literal>initialize</literal> . As the name suggests before any method is invoked initialize is invoked. Any prepatory code should be put here.</simpara>
 </section>
 <section id="_snapshot">
 <title>snapshot</title>
