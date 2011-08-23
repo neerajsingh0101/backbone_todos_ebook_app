@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="master.css" type="text/css" />
-    <title>step 13 : editing a todo item by double clicking</title>
+    <title>Step 13 : Editing a Todo Item by Double Clicking</title>
   </head>
 
   <body>
@@ -12,17 +12,17 @@
       <tr><td width="33%" align="left">
         
          <a href="step_12_deleting_a_todo_item.html">Prev</a><br/>
-         step 12 : deleting a todo item
+         Step 12 : Deleting a Todo Item
         
       </td><td width="33%" align="center">
         
          <a href="index.html">Home</a><br/>
-         <strong>backbone todos in steps</strong>
+         <strong>Backbone Todos in Steps</strong>
         
       </td><td width="33%" align="right">
         
           <a href="step_14_update_a_todo_item_by_hitting_enter.html">Next</a><br/>
-          step 14 : update a todo item by hitting enter
+          Step 14 : Update a Todo Item by Hitting Enter
         
       </td></tr>
     </table>
@@ -33,7 +33,7 @@
     <div class="content">
       <div class="section" lang="en" xml:lang="en">
 <div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a id="_step_13_editing_a_todo_item_by_double_clicking"></a>step 13 : editing a todo item by double clicking</h2></div></div></div>
+<a id="_step_13_editing_a_todo_item_by_double_clicking"></a>Step 13 : Editing a Todo Item by Double Clicking</h2></div></div></div>
 <div class="section" lang="en" xml:lang="en">
 <div class="titlepage"><div><div><h3 class="title">
 <a id="_code_diff_12"></a>Code diff</h3></div></div></div>
@@ -42,10 +42,10 @@
 <div class="section" lang="en" xml:lang="en">
 <div class="titlepage"><div><div><h3 class="title">
 <a id="_explanation_11"></a>Explanation</h3></div></div></div>
-<p>This commit adds the feature of editing and updating a todo item by double clicking an existing todo item.</p>
-<p>Let’s look at following code.</p>
+<p>This commit adds the feature of editing and updating a Todo item by double clicking an existing Todo item.</p>
+<p>Let’s look at the following code:</p>
 <pre class="programlisting">this.input.bind('blur', _.bind(this.close, this));</pre>
-<p>In the above code while binding we had to use <code class="literal">_bind</code> method provided by underscore to maintain the value of this. In this case following code would not work because providing <code class="literal">this</code> as the third argument only works while binding to backbone events.</p>
+<p>In the above code while binding we had to use <code class="literal">_bind</code> method provided by underscore to maintain the value of this. In this case following code would not work because providing <code class="literal">this</code> as the third argument only works while binding to Backbone events. More information about "bind" and "bindAll" is available <a class="ulink" href="http://blog.bigbinary.com/2011/08/18/understanding-bind-and-bindall-in-backbone.html" target="_top">here</a> .</p>
 <pre class="programlisting">this.input.bind('blur', this.close, this);</pre>
 </div>
 </div>
@@ -59,17 +59,17 @@
       <tr><td width="33%" align="left">
         
          <a href="step_12_deleting_a_todo_item.html">Prev</a><br/>
-         step 12 : deleting a todo item
+         Step 12 : Deleting a Todo Item
         
       </td><td width="33%" align="center">
         
          <a href="index.html">Home</a><br/>
-         backbone todos in steps
+         Backbone Todos in Steps
         
       </td><td width="33%" align="right">
         
           <a href="step_14_update_a_todo_item_by_hitting_enter.html">Next</a><br/>
-          step 14 : update a todo item by hitting enter
+          Step 14 : Update a Todo Item by Hitting Enter
         
       </td></tr>
     </table>
